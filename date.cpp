@@ -3,6 +3,8 @@
 
 using namespace std;
 
+bool is_a_leap_year(int y);
+
 date::date(int y, int m, int d) {
   cout << "Constructor called with values: " << y << ", month: " << m << ", day: " << d << "." << endl;
   year = y;
@@ -19,7 +21,22 @@ date::~date() {
 }
 
 int date::get_date_number() {
-  return 0; // placeholder
+  // days due to completed years 
+  int accumulated_days = (year - 2000) * 365;
+  // days due to completed!! leap years
+  for (int ty = 2000 ; ty < year; ty++) {
+    if (is_a_leap_year(ty)) {
+      accumulated_days++;
+    }
+  }
+  
+  // capture the real world data in a "natural" way
+  int month_length[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+  for (int mt = 0; mt < month - 1; mt++) {
+    accumulated_days += month_length[mt];
+  }
+
+  return accumulated_days; // placeholder
 }
 
 int date::get_day_of_week() {
@@ -29,4 +46,18 @@ int date::get_day_of_week() {
 // diagnostics stuff only
 void date::print_diagnostics() {
   cout << "Values: year: " << year << ", month: " << month << ", day: " << day << "." << endl;
+}
+
+bool is_a_leap_year(int y) {
+  bool r = false;
+  if ((y % 4) == 0) {
+    r = true;
+  }
+  if ((y % 100) == 0) {
+    r = false;
+  }
+  if ((y % 400) == 0) {
+    r = true;
+  }
+  return r;
 }

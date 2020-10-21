@@ -36,6 +36,17 @@ int date::get_date_number() {
     accumulated_days += month_length[mt];
   }
 
+  // deal with the possibility that the date is in a leap year
+  // and we are on or after february
+
+  if ((is_a_leap_year(year)) && (month > 2)) {
+    accumulated_days++;
+  }
+
+  accumulated_days += day-1;
+
+  // if we can be sure that the date is legitimate, then we are done
+
   return accumulated_days; // placeholder
 }
 

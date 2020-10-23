@@ -2,8 +2,8 @@
 #include "date.hpp"
 
 int main() {
-  date d(2000,3,1);
+  date d(2001,3,17);
   d.print_diagnostics();
   int dn = d.get_date_number();
-  std::cout << "The date number is " << dn << "." << std::endl;
+  std::cout << "The day number is " << dn << "." << std::endl;
 }

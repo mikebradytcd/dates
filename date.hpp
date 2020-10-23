@@ -4,6 +4,7 @@ class date {
   int year;
   int month;
   int day; // day of month
+  std::string weekday;
 
   public:
   date(int y, int m, int d); // convenience constructor
